@@ -11,7 +11,7 @@ app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
-mongoose.connect("mongodb+srv://admin-aman:Test123@cluster0.c0r5i.mongodb.net/todolistDB",{useNewUrlParser:true,useUnifiedTopology:true});
+mongoose.connect("mongodb+srv://admin-aman:Test123@cluster0.c0r5i.mongodb.net/todolistDB",{useNewUrlParser:true,useUnifiedTopology:true, useFindAndModify: false});
 const itemsSchema={
   name:String
 };
@@ -79,6 +79,7 @@ app.post("/delete",function(req,res){
       if(err){
       console.log(err);}
       else{
+        res.redirect("/");
         console.log("Deleted Checked Item");
       }
 
